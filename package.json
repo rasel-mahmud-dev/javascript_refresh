@@ -1,0 +1,32 @@
+{
+  "name": "javascript-refresh",
+  "version": "0.0.0",
+  "private": true,
+  "nodemonConfig": {
+    "watch": [
+      "views",
+      "routes",
+      "public"
+    ],
+    "ext": "hbs, js, scss",
+    "ignore": [
+      "*.test.ts"
+    ]
+  },
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "connect-livereload": "^0.6.1",
+    "cookie-parser": "^1.4.6",
+    "express": "~4.16.1",
+    "hbs": "^4.2.0",
+    "highlight.js": "^11.5.1",
+    "livereload": "^0.9.3",
+    "marked": "^4.0.14",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "node-sass-middleware": "^1.0.1",
+    "sqlite3": "^5.0.5"
+  }
+}

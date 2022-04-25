@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/stylesheets/hljs.css">
+
+<h1>{{post.title}}</h1>
+
+<div class="post-content" >
+  <pre>
+    <div id="post-content">
+
+    </div>
+  </pre>
+
+</div>
+
+<div id="md" hidden>  {{html}}</div>
+
+<script>
+  const md = document.getElementById("md")
+  const content = document.getElementById("post-content")
+  content.innerHTML = md.innerText
+  md && md.remove()
+
+</script>
+
