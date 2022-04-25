@@ -1,0 +1,19 @@
+<div class="secondary">
+    <h1><%= category.category_label %> </h1>
+    <% if(category.categories){ %>
+        <% Object.keys(category.categories).forEach(function(prop) { %>
+            <h2><%- prop%></h2>
+            <div>
+                <% category.categories[prop].forEach(function (cat){ %>
+                    <li>
+                        <% if(category.category_name !== ""){ %>
+                            <a href="<%= category.category_name %>/<%=cat.name%>"><%=cat.label%></a>
+                        <% } else{ %>
+                        <a href="<%=cat.name%>"><%=cat.label%></a>
+                        <% }  %>
+                    </li>
+                <% }) %>
+            </div>
+        <% }); %>
+    <% } %>
+</div>

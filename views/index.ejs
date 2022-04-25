@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('components/head')%>
+</head>
+<body>
+
+<%- include('components/navigation') %>
+
+
+<main>
+  <div class="site-inner">
+    <div class="site-inner__content">
+      <div>
+      </div>
+
+      <aside>
+        <%- include('components/sidebar', {category: category}) %>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+
+<%- include('components/footer') %>
+<script src="//localhost:35729/livereload.js?snipver=1"  defer=""></script>
+<%- include('components/end') %>
