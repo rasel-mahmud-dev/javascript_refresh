@@ -52,10 +52,10 @@ ul, li{
   padding: 20px;
   margin-left: 10px;
   ul{
-    list-style: none;
+    list-style: none!important;
     li{
       padding: 10px 0px;
-      list-style: none;
+      list-style: none!important;
     }
   }
   
@@ -89,10 +89,15 @@ ul, li{
     li{
       list-style: none;
       margin: 10px 0;
+      display: flex;
     }
     
     &--name{
       text-transform: uppercase;
+    }
+    .play_icon{
+      width: 15px;
+      margin-right: 2px;
     }
     
   }
