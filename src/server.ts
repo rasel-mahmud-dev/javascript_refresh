@@ -3,49 +3,29 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+import ejsLayouts from "express-ejs-layouts"
 
 import appRouter from './routes'
 
 
-// const liveReload = require("livereload");
-// const connectLiveReload = require("connect-livereload");
-//
-// const liveReloadServer = liveReload.createServer()
-// liveReloadServer.watch(path.join(__dirname, 'views'));
-//
-// liveReloadServer.server.once("connection", ()=>{
-//   setTimeout(()=>{
-//     liveReloadServer.refresh("/")
-//   }, 5)
-// })
-
-
 const app = express();
-// app.use(connectLiveReload())
-// app.use(require('connect-livereload')({
-//   port: 35729
-// }));
+
 
 // view engine setup
 app.set('views', path.resolve( 'views'));
 app.set('view engine', 'ejs');
 
 
+app.use(ejsLayouts);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use(sassMiddleware({
-//   src: path.resolve( 'src/public'),
-//   dest: path.resolve('dist/public'),
-//   indentedSyntax: false, // true = .sass and false = .scss
-//   sourceMap: true
-// }));
 
 app.use(express.static(path.resolve('dist/public')));
 // app.use(express.static(path.resolve( 'src/public')));
+
 
 appRouter(app)
 
@@ -68,11 +48,27 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-if(process.env.NODE_ENV === "development") {
-  // app.listen(1000, () => console.log("server is running on port 1000"))
+
+// this only run my local machine
+if(process.env.NODE_ENV === "development" && process.env.NODE_SCOPE === "local") {
+  const liveReload = require("livereload");
+  const connectLiveReload = require("connect-livereload");
+  
+  const liveReloadServer = liveReload.createServer()
+  liveReloadServer.watch(path.join(__dirname, 'views'));
+  
+  liveReloadServer.server.once("connection", ()=>{
+    setTimeout(()=>{
+      liveReloadServer.refresh("/")
+    }, 5)
+  })
+  app.use(connectLiveReload())
+  app.listen(1000, () => console.log("server is running on port 1000"))
 }
 
+
 export default app;
+module.exports  = app;
 
 
 

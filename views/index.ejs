@@ -1,28 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <%- include('components/head')%>
-</head>
-<body>
 
-<%- include('components/navigation') %>
 
 
 <main>
-  <div class="site-inner">
-    <div class="site-inner__content">
-      <div>
-      </div>
 
-      <aside>
-        <%- include('components/sidebar', {category: category}) %>
-      </aside>
+  <% if (!html){ %>
 
+    <div class="category-content-map">
+      <h1><%= category.category_label %></h1>
+
+      <p class="section_desc"><%= category.desc %></p>
+
+      <% if(category.categories){ %>
+        <% Object.keys(category.categories).forEach(function(prop, index) { %>
+          <div class="each_section">
+            <h2 class="each_section--name">SECTION <%- index+1 +" "+ prop%></h2>
+            <div>
+              <% category.categories[prop].forEach(function (cat){ %>
+                <li>
+                  <% if(category.category_name !== ""){ %>
+                    <a href="/<%= category.category_name %>/<%=cat.name%>"><%=cat.label%></a>
+                  <% } else{ %>
+                  <a href="/<%=cat.name%>"><%=cat.label%></a>
+                  <% }  %>
+                </li>
+              <% }) %>
+            </div>
+          </div>
+        <% }); %>
+      <% } %>
     </div>
-  </div>
+
+  <%}%>
+
 </main>
-
-
-<%- include('components/footer') %>
-<script src="//localhost:35729/livereload.js?snipver=1"  defer=""></script>
-<%- include('components/end') %>

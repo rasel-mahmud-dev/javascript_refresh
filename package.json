@@ -6,7 +6,9 @@
     "watch": [
       "views",
       "src",
-      "src/public/stylesheets"
+      "src/public/stylesheets",
+      "src/public/javascripts",
+      "src/routes"
     ],
     "ext": "ejs, js, scss",
     "ignore": [
@@ -18,19 +20,20 @@
   },
   "scripts": {
     "start": "nodemon ./bin/www",
-    "dev2": "nodemon src/server.ts",
+    "tsc": "tsc",
     "dev3": "set NODE_ENV=development&ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "run-all --parallel tsc copy",
+    "build": "npm-run-all --parallel tsc copy",
     "copy": "ts-node copyStaticAssets.ts",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/server.js",
-    "dev": "set NODE_ENV=development&npm-run-all --parallel watch-ts watch-sass watch-node",
-    "watch-sass": "sass --watch src/public dist/public"
+    "dev": "set NODE_ENV=development&set NODE_SCOPE=local&npm-run-all --parallel watch-ts watch-sass watch-node",
+    "watch-sass": "sass --watch src\\public\\stylesheets:dist\\public\\stylesheets"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.7",
     "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1",
     "highlight.js": "^11.5.1",
     "marked": "^4.0.14",
     "sqlite3": "^5.0.5"

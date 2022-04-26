@@ -1,17 +1,13 @@
 <link rel="stylesheet" href="/stylesheets/hljs.css">
+<%- include('../components/head') %>
 
-<h1>{{post.title}}</h1>
 
-<div class="post-content" >
-  <pre>
-    <div id="post-content">
+<div id="post-content">
+  <code>
 
-    </div>
-  </pre>
-
+  </code>
 </div>
-
-<div id="md" hidden>  {{html}}</div>
+<div id="md" hidden>  <%=html %></div>
 
 <script>
   const md = document.getElementById("md")

@@ -3,6 +3,4 @@ node_modules
 db
 src/markdowns
 src/db
-
-dist/markdowns
-dist/db
+dist

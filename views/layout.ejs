@@ -1,0 +1,33 @@
+
+<head>
+    <%- include('./components/head')%>
+</head>
+<body>
+
+<%- include('./components/navigation') %>
+
+<main class="container">
+    <div class="site-inner">
+        <div class="site-inner__content">
+            <div class="flex-1">
+
+                <%if (typeof errorMessage !== "undefined" ){%>
+                    <h1><%=errorMessage%></h1>
+                <%}%>
+
+                <%- body %>
+            </div>
+
+            <aside>
+                <%if (typeof category !== "undefined" ){%>
+                    <%- include('./components/sidebar', {category: category}) %>
+                <%}%>
+            </aside>
+
+        </div>
+    </div>
+</main>
+
+<%- include('./components/footer') %>
+<script src="//localhost:35729/livereload.js?snipver=1"  defer=""></script>
+<%- include('./components/end') %>

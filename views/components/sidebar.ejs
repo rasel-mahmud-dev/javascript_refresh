@@ -7,9 +7,9 @@
                 <% category.categories[prop].forEach(function (cat){ %>
                     <li>
                         <% if(category.category_name !== ""){ %>
-                            <a href="<%= category.category_name %>/<%=cat.name%>"><%=cat.label%></a>
+                            <a href="/<%= category.category_name %>/<%=cat.name%>"><%=cat.label%></a>
                         <% } else{ %>
-                        <a href="<%=cat.name%>"><%=cat.label%></a>
+                        <a href="/<%=cat.name%>"><%=cat.label%></a>
                         <% }  %>
                     </li>
                 <% }) %>
