@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    //    "module": "ESNext",
+    "target": "es2015",
+    "module": "commonjs",
     "strict": false,
-    "noImplicitAny": false,
-    "module": "CommonJS",
-    "target": "es6",
-
-    "rootDir": "src", // include src dir
     "allowJs": true,
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
+    "rootDir": "src",
+    // include src dir
     "sourceRoot": ".",
     "inlineSourceMap": true,
     //    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "outDir": "dist",
-    "lib": ["es2021"]
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*"
