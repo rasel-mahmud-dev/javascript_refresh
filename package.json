@@ -19,7 +19,7 @@
     }
   },
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node index.js",
     "tsc": "tsc",
     "dev3": "set NODE_ENV=development&ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "npm-run-all --parallel tsc copy",

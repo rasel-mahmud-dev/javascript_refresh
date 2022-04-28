@@ -10,6 +10,9 @@ import path  from "path";
 import fs from "fs";
 import {NextFunction, Request, Response, Application} from "express";
 import Post, {PostType} from "../models/Post";
+import createLogger, {logPath} from "../utils/createLogger";
+import {log} from "util";
+import {readdir, readFile, stat} from "fs/promises";
 
 const categoryJson = require("../db/category.json");
 
@@ -51,6 +54,7 @@ function errorHtml(title: string){
 }
 
 export default (app: Application)=> {
+  
   /* GET home with category name page. */
   
   app.get('/:category_name/:slug', async function (req: Request, res: Response, next:NextFunction) {
@@ -119,7 +123,6 @@ export default (app: Application)=> {
   })
   
 
-
   app.get("/inject.js.map", (req, res)=>{
     res.json([])
   })
@@ -150,7 +153,6 @@ export default (app: Application)=> {
     const slug = req.params.slug
     let category = {}
     
-    
     let categoryJson = require("../db/category.json")
     
     let isPostDetails = false
@@ -172,10 +174,9 @@ export default (app: Application)=> {
     if(isPostDetails) {
       
       try {
-  
         let post : PostType | any = await Post.getPost("SELECT * FROM posts p where p.slug = ?", slug)
        
-        const content = fs.readFileSync(path.resolve("src/markdowns/" + post.path))
+        const content = fs.readFileSync(markdownPath(post.path))
         let html = marked.parse(content.toString())
         
         res.render('posts/details', {
@@ -188,6 +189,16 @@ export default (app: Application)=> {
         });
         
       } catch (ex){
+  
+        // return res.json({
+        //   err: ex.message,
+        //   title: slug,
+        //   html: errorHtml(slug),
+        //   slug: slug,
+        //   categoryName: "Javascript Fundamental",
+        //   category: category
+        // });
+        
         return res.render('posts/details', {
           title: slug,
           html: errorHtml(slug),
@@ -199,6 +210,7 @@ export default (app: Application)=> {
       
       
     } else {
+      
       return res.render('index', {
         title: "Javascript Fundamental/"+slug,
         message: "Post Not Found",
@@ -208,6 +220,7 @@ export default (app: Application)=> {
       });
     }
   })
+  
   
 }
 
